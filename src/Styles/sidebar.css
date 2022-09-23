@@ -1,0 +1,8 @@
+.sidebar {
+    background-color: red;
+    z-index: 20;
+    width: 16rem;
+    overflow-y: auto;
+    flex-shrink: 0;
+    display: none;
+}

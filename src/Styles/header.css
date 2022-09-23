@@ -1,0 +1,52 @@
+.header {
+    z-index: 10;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: rgba(26,28,35);
+}
+
+.container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    justify-content: space-between;
+    display: flex;
+}
+
+.pesquisa {
+    flex: 1 1 0%;
+    justify-content: center;
+    display: flex;
+}
+
+.relative {
+    width: 100%;
+    position: relative;
+    max-width: 36rem;
+    margin-right: 1.5rem;
+}
+
+.absolute {
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    padding-left: 0.6rem;
+    align-items: center;
+    display: flex;
+}
+
+
+.input {
+    background-color: #24262d;
+    width: 100%;
+    padding-left: 2rem;
+    padding-right: 0.5rem;
+    border-width: 0;
+    border-radius: 0.4rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    font-size: 1rem;
+    line-height: 1.5
+}
