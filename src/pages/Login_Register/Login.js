@@ -1,23 +1,27 @@
 import { useState } from "react"; 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdLock, MdEmail } from 'react-icons/md';
 import Imagem1 from '../../assets/imagemlogin.png';
 import Logo from '../../assets/logosenai.png';
 import Logo2 from '../../assets/logosenai2.png';
 import '../../styles/App.css';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import axios from 'axios';
 
 export default function Login(){
   const [userData, setUserData] = useState({email:'', password:''});
+  const [error, setError] = useState(null);
   const dispatch = useDispatch();
-  const states = useSelector((state)=>state);
-  
+  const navigate = useNavigate();
+
   function handlerSubmit(e){
     e.preventDefault();
-    axios.post(`${process.env.REACT_APP_API_KEY}/login`,userData)
-    .then((response)=>console.log(response))
-    .catch((error)=>console.log(error));
+    axios.post(`${process.env.REACT_APP_API_URL}/login`,userData)
+    .then(({data:{token}})=>{
+      dispatch({type:"ADD_TOKEN", data:token})
+      navigate("/departments");
+    })
+    .catch(({response:{data:{msg}}})=>setError(msg));
   }
 
   return(
@@ -83,6 +87,7 @@ export default function Login(){
                   Esqueci minha Senha
               </Link>
             </form>
+            {error&& <p id="errorLogin">{error}</p>}
         </div>
       </div>
     </div>
