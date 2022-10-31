@@ -48,12 +48,12 @@ function ModalDeparmento() {
     <div className='container'>
       <div className='container-etiquetas'>
         <div className='card-total-itens'>
-        <img src='../assets/grafico-de-bolo.png' alt='cadastro' className='icon-grafico'/>
-          <h1>Total de itens</h1>
-          <p>4.669</p>
+          
+            <h1>Total de itens</h1>
+            <p>4.669</p>
         </div>
       <button className="btn-ver" onClick={openModal}>
-        <img src='../assets/cadastro.png' alt='cadastro' className='icon-cadastro'/>
+        <img src='../assets/cadastro.png' alt='' className='icon-cadastro'/>
         cadastrar item
       </button>
       </div>
