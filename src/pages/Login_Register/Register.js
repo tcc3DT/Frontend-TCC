@@ -25,29 +25,25 @@ export default function Register(){
     </div>
     <div className="appForm">
       <img className="logosenai2" src={Logo2}/>
-      <div className="pageSwitcher">
+      <h1 className="pageSwitcher">
         GERENCIAMENTO DE PATRIMÔNIO 
-      </div>
+      </h1>
       <div className="formTitle">
-        <Link
-          to="/"
-          className="formTitleLink"
-        >
+        <Link to="/"
+          className="formTitleLink">
           Entrar
         </Link>
         {" "}ou{" "}
-        <Link
-          exact
+        <Link exact
           to="/register"
-          className="formTitleLink-active formTitleLink"
-        >
+          className="formTitleLink-active formTitleLink">
           Cadastrar
         </Link>
       </div>
       <div className="formCenter">
         <form onSubmit={(e)=>handlerSubmit(e)} className="formFields">
           <div className="formField">
-            <MdEmail className="senha" size={20} color="gray"/>
+            <MdEmail size={30} color="gray"/>
             <input
               type="text"
               id="name"
@@ -59,7 +55,7 @@ export default function Register(){
             />
           </div>
           <div className="formField">
-            <MdLock className="senha" size={20} color="gray"/>
+            <MdLock size={30} color="gray"/>
             <input
             type="password"
             id="password"
@@ -71,7 +67,7 @@ export default function Register(){
             />
           </div>
           <div className="formField">
-            <MdLock className="senha" size={20} color="gray"/>
+            <MdLock size={30} color="gray"/>
             <input
               type="password"
               id="password1"

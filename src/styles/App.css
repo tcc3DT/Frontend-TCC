@@ -22,10 +22,6 @@
   text-align: center;
 }
 
-.formCenter {
-  margin-bottom: 100px;
-}
-
 .formTitle {
   color: #BF2121;
   font-weight: 300;
@@ -52,9 +48,13 @@
 }
 
 .formField {
+  display:flex;
+  align-items:flex-end;
   margin-bottom: 8%;
-  /* display: flex;
-  flex-direction: initial; */
+}
+
+.formField svg{
+  padding:5px 2px;
 }
 
 .formFieldLabel {
@@ -82,18 +82,18 @@
 }
 
 .formFieldButton {
-box-sizing: border-box;
-width: 130px;
-height: 40px;
-background: #FFFFFF;
-border: 1px solid #A93232;
-border-radius: 20px;
-color: #913D3D;
-position:absolute;
-right: 6%;
-bottom: 20%;
-font-weight: bold;
-font-size: larger;
+  box-sizing: border-box;
+  width: 130px;
+  height: 40px;
+  background: #FFFFFF;
+  border: 1px solid #A93232;
+  border-radius: 20px;
+  color: #913D3D;
+  position:absolute;
+  right: 6%;
+  bottom: 20%;
+  font-weight: bold;
+  font-size: larger;
 }
 
 .formFieldButton2 {
@@ -110,7 +110,6 @@ font-size: larger;
   font-size: larger;
   margin-left: 65%;
   margin-top: 10%;
-
 }
 
 .imagemteste{
@@ -138,18 +137,21 @@ font-size: larger;
   justify-content: center;
   align-items: center;
   margin-left: 20%;
-
 }
 
 .topping3{
   color:#9d9d9d;
   display: flex;
   margin-right: 30%;
-
 }
 
 .formFieldLink{
   color:#fd0000;
+  text-decoration: underline;
+}
+
+.formFieldLink:hover{
+  cursor: pointer;
 }
 
 #errorLogin{
@@ -187,5 +189,72 @@ font-size: larger;
   margin-top: 2%;
   text-align: center;
  }
+}
 
+/* Modal Forget Pass Style*/
+
+.app-black {
+  background-color: rgba(0,0,0,0.5);
+  position:fixed;
+  width:100vw;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content: center;
+}
+
+.app-black .content{
+  background:#ffff ;
+  color:#000;
+  width:30%;
+  display:flex;
+  flex-direction: column;
+  padding:2rem;
+  border-radius:0.7rem;
+  gap:1rem;
+}
+
+.app-black .content .titleModal{
+  display:flex;
+  justify-content: space-between;
+}
+
+.app-black .content .titleModal h2{
+  color:#BF2121;
+  font-weight: 600;
+}
+
+.app-black .content .titleModal .exit-btn{
+  border:none;
+  background-color: inherit;
+  font-size: 1.3rem;
+  font-weight:bold;
+  color:rgba(0,0,0,0.6);
+}
+
+.app-black .content .titleModal .exit-btn:hover{
+  cursor: pointer;
+}
+
+.app-black .content label{
+  font-size: 1.1rem;
+}
+
+.app-black .content #emailInput{
+  font-size: .9rem;
+  padding: .3rem;
+  outline: none;
+}
+
+.app-black .content #send-btn{
+  width:30%;
+  height: 2.2rem;
+  margin-left:auto;
+  padding:.3rem;
+  background: inherit;
+  border: 2px solid #A93232;
+  border-radius: 1.3rem;
+  color: #913D3D;
+  font-weight: bold;
+  font-size: larger;
 }
