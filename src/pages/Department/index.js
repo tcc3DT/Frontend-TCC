@@ -14,24 +14,17 @@ function Departamentos() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [departmentTypes, setDepartmentTypes] = useState([]);
-
+  
   useEffect(()=>{
     const token = states.Token.value != "" ? states.Token.value : sessionStorage.getItem("token");
     if(states.Token.value = "") dispatch({type:"ADD_TOKEN", data:token});
+    
     axios.get(`${process.env.REACT_APP_API_URL}/department/0`,{headers:{"x-access-token":token}})
     .then(({data})=>{
-      const allArr = [];
-      data.forEach(({id}) => {
-        axios.get(`${process.env.REACT_APP_API_URL}/department/${id}?rooms=true`,{headers:{"x-access-token":token}})
-        .then(({data:{name, id, rooms}})=>{
-          const customRoom = rooms;
-          for(let i in customRoom){
-            customRoom[i].icon = (<FaFlask size={15}/>)
-          }
-          allArr.push([id, name, customRoom]);
-        })
+      const newData = data.map((departments)=>{
+        return departments
       });
-      if(departmentTypes.length === 0) setDepartmentTypes(allArr);
+      setDepartmentTypes(newData);
     })
     .catch(()=>navigate("/"));
   },[])
@@ -41,25 +34,35 @@ function Departamentos() {
     navigate("/table");
   }
 
+  function Selector({name, rooms}){
+    return(
+        <div className="drop-all">
+         {rooms &&
+          <Select placeholder={name}
+            options={rooms}
+            onChange={(e)=>nextPage(e.departmentId)}
+            getOptionLabel={(e)=>(
+              <div className="option-selector">
+                <FaDoorClosed size={15}/>
+                <p>{e.nRoom}</p>
+              </div>
+            )}
+          />
+  
+         }
+        </div>
+    );
+  };
+
   return (
     <>
       <Header/>
       <ModalDeparmento/>
-        <section id="selectors"> 
-          {departmentTypes.map(([id, name, rooms])=>(
-            <div key={id} className="drop-all">
-              <Select placeholder={name}
-                options={rooms}
-                getOptionLabel={(e)=>{
-                  <div style={{ display: "flex", alignItems: "center", height: 40 }}>
-                    {e.icon}
-                    <span style={{ marginLeft: 5 }}>{e.nRoom}</span>
-                  </div>
-                }}
-              />
-            </div>
-          ))}
+      {departmentTypes.length != 0 &&
+        <section id="selectors">
+          {departmentTypes.map(({id, name, rooms})=>(<Selector key={id} name={name} rooms={rooms} id={id} />))} 
         </section>
+      }
     </>
   );
 }
