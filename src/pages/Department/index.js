@@ -57,6 +57,7 @@ function Departamentos() {
   return (
     <>
       <Header/>
+      {/* Desativar sidebar nessa tela */}
       <ModalDeparmento/>
       {departmentTypes.length != 0 &&
         <section id="selectors">

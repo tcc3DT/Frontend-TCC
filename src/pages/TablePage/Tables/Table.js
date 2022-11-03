@@ -4,69 +4,15 @@ import ModalInfo from "../../../Components/info modal";
 import NewPatrimonioModal from '../../../Components/newpatrimoniomodal';
 import {FaChevronLeft, FaChevronRight} from 'react-icons/fa'
 
-
-import Categories from "./Categories";
-
 function Tables() {
-  const [data, setData] = useState(Categories);
-
-  const filterResult = (catItem) => {
-    const result = Categories.filter((curDate) => {
-      return curDate.name === catItem;
-    });
-    setData(result);
-  };
+  const [data, setData] = useState();
 
   return (
-    <>
       <div className="containerUp">
-
-        {/* <div className="row">
-          <table>
-            <thead>
-              <tr>
-                <td>
-                  <text className="textclass">Filter</text>
-                </td>
-              </tr>
-            </thead>
-            <tbody>
-
-              <div className="col">
-                <button className="checkbtn" onClick={() => setData(Categories)}>
-                  All
-                </button>
-                <button
-                  className="checkbtn"
-                  onClick={() => filterResult("Cadeira")}
-                >
-                  Cadeira
-                </button>
-                <button className="checkbtn" onClick={() => filterResult("Mesa")}>
-                  Mesa
-                </button>
-                <button
-                  className="checkbtn"
-                  onClick={() => filterResult("Computador")}
-                >
-                  Computador
-                </button>
-                <button
-                  className="checkbtn"
-                  onClick={() => filterResult("Teclado")}
-                >
-                  Teclado
-                </button>
-              </div>
-            </tbody>
-          </table>
-        </div> */}
-
         <div className="tableContainer">
           <button className="btn-add-patrimonio">
             <NewPatrimonioModal/>
           </button>
-
           <div className="subContainer">
             <table className="table">
               <thead className="thead">
@@ -76,47 +22,68 @@ function Tables() {
                   <td>Nome/modelo</td>
                   <td>Local</td>
                   <td>Situação</td>
-                 
                 </tr>
               </thead>
-
-              {data.map((values) => {
+              <tbody>
+              {/* Teste - Apagar Depois */}
+              <tr>
+                    <td>
+                      <div>
+                        <button>    
+                          <ModalInfo/>
+                        </button>
+                      </div>
+                    </td>
+                    <td>
+                      <div>
+                        <div>
+                          <p className="id-object">0</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <span>Teste</span>
+                    </td>
+                    <td>
+                      <span>Teste</span>
+                    </td>
+                    <td >
+                      <span>Teste</span>
+                    </td> 
+                  </tr>
+              {/* {data.map((values) => {
                 const { id, name, local, situacao } = values;
                 return (
-                  <tbody>
-                    <tr>
+                  <tr>
+                    <td>
+                      <div>
+                        <button>    
+                          <ModalInfo/>
+                        </button>
+                      </div>
+                    </td>
+                    <td>
+                      <div>
+                        <div>
+                          <p className="id-object">{id}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <span>{name}</span>
+                    </td>
+                    <td>
+                      <span>{local}</span>
+                    </td>
                     <td >
-                        <div>
-                            <button >
-                              
-                              <ModalInfo />
-                            </button>
-                        </div>
-                      </td>
-                      <td >
-                        <div>
-                          <div>
-                            <p className="id-object">{id}</p>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <span >{name}</span>
-                      </td>
-                      <td>
-                        <span>{local}</span>
-                      </td>
-                      <td >
-                        <span >{situacao}</span>
-                      </td>
-                     
-                    </tr>
-                  </tbody>
+                      <span >{situacao}</span>
+                    </td> 
+                  </tr>
                 );
-              })}
+              })} */}
+              </tbody>
             </table>
           </div>
-
           <div className="tabbleFooter">
             <div className="pagination">
               <span>mostrando 1 - 10 de 45</span>
@@ -139,7 +106,6 @@ function Tables() {
           </div>
         </div>
       </div>
-    </>
   );
 }
 
