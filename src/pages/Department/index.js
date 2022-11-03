@@ -17,10 +17,10 @@ function Departamentos() {
 
   useEffect(()=>{
     const token = states.Token.value != "" ? states.Token.value : sessionStorage.getItem("token");
-    const allArr = [];
     if(states.Token.value = "") dispatch({type:"ADD_TOKEN", data:token});
     axios.get(`${process.env.REACT_APP_API_URL}/department/0`,{headers:{"x-access-token":token}})
     .then(({data})=>{
+      const allArr = [];
       data.forEach(({id}) => {
         axios.get(`${process.env.REACT_APP_API_URL}/department/${id}?rooms=true`,{headers:{"x-access-token":token}})
         .then(({data:{name, id, rooms}})=>{
@@ -31,9 +31,9 @@ function Departamentos() {
           allArr.push([id, name, customRoom]);
         })
       });
+      if(departmentTypes.length === 0) setDepartmentTypes(allArr);
     })
     .catch(()=>navigate("/"));
-    setDepartmentTypes(allArr);
   },[])
 
   function nextPage(idDepartment){
@@ -45,22 +45,21 @@ function Departamentos() {
     <>
       <Header/>
       <ModalDeparmento/>
-      <section id="selectors">
-        {departmentTypes.map(([id, name, rooms])=>(
-          <div key={id} className="drop-all">
-            {/* <Select
-              placeholder={name}
-              options={rooms}
-              getOptionLabel={(e) => (
-                <div className="option-selector" onClick={()=>nextPage(e.id)}>
-                  {e.icon}
-                  <span style={{ marginLeft: 5 }}>{e.nRoom}</span>
-                </div>
-              )}
-            /> */}
-          </div>
-        ))}
-      </section>
+        <section id="selectors"> 
+          {departmentTypes.map(([id, name, rooms])=>(
+            <div key={id} className="drop-all">
+              <Select placeholder={name}
+                options={rooms}
+                getOptionLabel={(e)=>{
+                  <div style={{ display: "flex", alignItems: "center", height: 40 }}>
+                    {e.icon}
+                    <span style={{ marginLeft: 5 }}>{e.nRoom}</span>
+                  </div>
+                }}
+              />
+            </div>
+          ))}
+        </section>
     </>
   );
 }
