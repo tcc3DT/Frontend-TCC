@@ -4,7 +4,7 @@ import { MdLock, MdEmail } from 'react-icons/md';
 import Imagem1 from '../../assets/imagemlogin.png';
 import Logo from '../../assets/logosenai.png';
 import Logo2 from '../../assets/logosenai2.png';
-import '../../styles/App.css';
+import './App.css';
 import axios from 'axios';
 
 export default function Register(){

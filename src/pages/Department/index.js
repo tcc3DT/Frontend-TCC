@@ -29,8 +29,8 @@ function Departamentos() {
     .catch(()=>navigate("/"));
   },[])
 
-  function nextPage(idDepartment){
-    dispatch({type:"ADD_NAV_DATA", data:{idDepartment}})
+  function nextPage(navData){
+    dispatch({type:"ADD_NAV_DATA", data:{navData}})
     navigate("/table");
   }
 
@@ -40,7 +40,7 @@ function Departamentos() {
          {rooms &&
           <Select placeholder={name}
             options={rooms}
-            onChange={(e)=>nextPage(e.departmentId)}
+            onChange={(e)=>nextPage({departmentId: e.departmentId, roomId: e.id})}
             getOptionLabel={(e)=>(
               <div className="option-selector">
                 <FaDoorClosed size={15}/>

@@ -1,3 +1,9 @@
+.App {
+  height: 100vh;
+  display: flex;
+  color: white;
+}
+
 .appAside {
   width: 70%;
   background-color: #f74444e5;

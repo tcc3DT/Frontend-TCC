@@ -1,13 +1,12 @@
-import { useState } from "react"; 
+import axios from 'axios';
+import { useState } from "react";
+import { MdEmail, MdLock } from 'react-icons/md';
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { MdLock, MdEmail } from 'react-icons/md';
 import Imagem1 from '../../assets/imagemlogin.png';
 import Logo from '../../assets/logosenai.png';
 import Logo2 from '../../assets/logosenai2.png';
-import '../../styles/App.css';
-import { useDispatch } from "react-redux";
-import axios from 'axios';
-import { BiWindows } from "react-icons/bi";
+import './App.css';
 
 export default function Login(){
   const [userData, setUserData] = useState({email:'', password:''});
