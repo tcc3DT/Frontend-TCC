@@ -1,21 +1,30 @@
-import React, { useState } from "react";
-import "../StylesTable/table.css";
+import React, { useEffect, useState } from "react";
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { useSelector } from "react-redux";
+import FilterTable from '../../../Components/FilterTable';
 import NewPatrimonioModal from '../../../Components/newpatrimoniomodal';
-import {FaChevronLeft, FaChevronRight} from 'react-icons/fa'
-import StyledCheckbox from "../StyledCheckbox";
+import "../Styles/table.css";
 
 function Tables() {
-  const [data, setData] = useState([{number:0, name:"Teste", local:"Teste", situation:"teste", checked:true}]);
-
+  const [data, setData] = useState();
+  const states = useSelector((states)=>states);    
+  const [theme, setTheme] = useState(localStorage.getItem("theme"));
+  
+  useEffect(()=>{
+    setTheme(states.NavData.value.theme);
+  },[states.NavData])
+  
   return (
-      <div className="containerUp">
+    <>
+      <div className="containerUp" data-theme={theme}>
+        <FilterTable />
         <div className="tableContainer">
           <button className="btn-add-patrimonio">
-            <NewPatrimonioModal/>
+            <NewPatrimonioModal theme={theme}/>       
           </button>
           <div className="subContainer">
-            <table>
-              <thead>
+            <table className="table">
+              <thead className="thead">
                 <tr>
                   <td></td>
                   <td>N° de identificação</td>
@@ -25,33 +34,25 @@ function Tables() {
                 </tr>
               </thead>
               <tbody>
-                {data.map(({ id, name, local, situacao, checked }) => {
-                  return (
-                    <tr>
-                      <td>
-                        <button>    
-                          <StyledCheckbox checked={checked}/>
-                        </button>
-                      </td>
-                      <td>
-                        <div>
-                          <div>
-                            <p className="id-object">{id}</p>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <span>{name}</span>
-                      </td>
-                      <td>
-                        <span>{local}</span>
-                      </td>
-                      <td>
-                        <span >{situacao}</span>
-                      </td> 
-                    </tr>
-                  );
-                })}
+                <tr>
+                  <td>
+                    <button>    
+                      {/* CheckBox */}
+                    </button>
+                  </td>
+                  <td>
+                    <p className="id-object">0</p>
+                  </td>
+                  <td>
+                    <span>Teste</span>
+                  </td>
+                  <td>
+                    <span>Teste</span>
+                  </td>
+                  <td >
+                    <span>Teste</span>
+                  </td> 
+                </tr>
               </tbody>
             </table>
           </div>
@@ -77,6 +78,7 @@ function Tables() {
           </div>
         </div>
       </div>
+    </>
   );
 }
 

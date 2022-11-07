@@ -30,7 +30,7 @@ function Departamentos() {
   },[])
 
   function nextPage(navData){
-    dispatch({type:"ADD_NAV_DATA", data:{navData}})
+    dispatch({type:"ADD_NAV_DATA", data:navData})
     navigate("/table");
   }
 

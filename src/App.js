@@ -7,13 +7,13 @@ import { Provider } from "react-redux";
 import store from './store';
 import TableUser from "./pages/PageUser/mainPageUsers";
 import TableVerification from "./pages/PageVerification/mainPageVerification";
-import VeificationPatrimony from "./pages/VerificationPatrimonyPage";
+import VerificationPatrimony from "./pages/VerificationPatrimonyPage";
 
 function App() {
   return (
     <Provider store={store}>
       <Routes>
-      <Route path="/" element={<VeificationPatrimony/>}/>
+      <Route path="/" element={<VerificationPatrimony/>}/>
         {/* <Route path="/" element={<Login/>}/> */}
         {/* <Route path="/register" element={<Register/>}/>
         <Route path="/departments" element={<Departments/>}/>

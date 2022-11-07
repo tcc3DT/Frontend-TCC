@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import {FaPlus} from 'react-icons/fa'
 import './newpatrimonio.css'
 
-function NewPatrimonioModal() {
+function NewPatrimonioModal({theme}) {
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
@@ -17,8 +17,7 @@ function NewPatrimonioModal() {
   return (
     <div className="container-new-modal">
       <button onClick={openModal}>
-        <FaPlus size={25}/>
-            {/* <span className="tooltiptext">Adicionar item</span> */}
+        <FaPlus size={25} color={theme === "dark" && "#ffff"}/>
       </button>
       <Modal
         isOpen={modalIsOpen}
@@ -111,7 +110,6 @@ function NewPatrimonioModal() {
             <button id='new'>Cadastrar patrimonio</button>
         </div>
       </Modal>
-
     </div>
   );
 }

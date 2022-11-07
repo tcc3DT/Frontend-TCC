@@ -27,30 +27,30 @@ function Tables() {
               <tbody>
               {/* Teste - Apagar Depois */}
               <tr>
-                    <td>
+                  <td>
+                    <div>
+                      <button>    
+                        <ModalInfo/>
+                      </button>
+                    </div>
+                  </td>
+                  <td>
+                    <div>
                       <div>
-                        <button>    
-                          <ModalInfo/>
-                        </button>
+                        <p className="id-object">0</p>
                       </div>
-                    </td>
-                    <td>
-                      <div>
-                        <div>
-                          <p className="id-object">0</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <span>Teste</span>
-                    </td>
-                    <td>
-                      <span>Teste</span>
-                    </td>
-                    <td >
-                      <span>Teste</span>
-                    </td> 
-                  </tr>
+                    </div>
+                  </td>
+                  <td>
+                    <span>Teste</span>
+                  </td>
+                  <td>
+                    <span>Teste</span>
+                  </td>
+                  <td >
+                    <span>Teste</span>
+                  </td> 
+                </tr>
               {/* {data.map((values) => {
                 const { id, name, local, situacao } = values;
                 return (
