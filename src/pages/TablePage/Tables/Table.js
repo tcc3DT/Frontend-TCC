@@ -1,7 +1,7 @@
 import React, { useState} from "react";
 import useLocalStorage from "use-local-storage";
 import "../Styles/table.css";
-import ModalInfo from "../../../Components/info modal";
+import ModalInfo from "../../../Components/ModalInfo";
 import NewPatrimonioModal from '../../../Components/newpatrimoniomodal';
 import {FaChevronLeft, FaChevronRight} from 'react-icons/fa'
 import {BsSunFill, BsFillMoonFill} from 'react-icons/bs';
