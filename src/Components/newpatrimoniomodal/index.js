@@ -1,117 +1,127 @@
 import * as React from 'react';
 import Modal from 'react-modal';
-import {FaPlus} from 'react-icons/fa'
+import { FaPlus } from 'react-icons/fa'
 import './newpatrimonio.css'
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import ModalExcel from '../Modalexcel';
+function NewPatrimonioModal() {
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+    const [Data, SetData] = React.useState([])
+    const [Excel,SetExcel] = React.useState();
+    const states = useSelector((State) => State)
 
-function NewPatrimonioModal({theme}) {
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+    function openModal() {
+        setIsOpen(true);
+    }
 
-  function openModal() {
-    setIsOpen(true);
-  }
+    function closeModal() {
+        setIsOpen(false);
+    }
+    async function NewPatrimony() {
 
-  function closeModal() {
-    setIsOpen(false);
-  }
+        const url = `http://localhost:3500/insertPatrimony/12`
 
-  return (
-    <div className="container-new-modal">
-      <button onClick={openModal}>
-        <FaPlus size={25} color={theme === "dark" && "#ffff"}/>
-      </button>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        className="modalContentPatrimonio"
-        overlayClassName="modal-overlay"
-      >
-        <div className='title'>
-           <h1 id='title-modal'>Cadastrar novo patrimônio</h1>
-           <p id='info-modal'>Neste modal você poderá fazer as seguintes alterações:</p>
-        </div>
+        const header = sessionStorage.getItem("token")
+        console.log(header)
+        await axios.post(url, Data, {
+            headers: {
+                'x-access-token': header
+            }
+        })
+            .then((response) => { alert(response.data) })
+            .catch((err) => {
+                console.log(err)
+                alert("Falha ao criar o patrimônio")
+            })
 
-        <div className='containerOne'>
-            <div>
-                <label>Situação</label>
-                <select id='selectSituation'>
-                    <option id='ativo'>
-                        Ativo
-                    </option>
-                    <option id='manutencao'>
-                        Manutenção
-                    </option>
-                    <option id='danificado'>
-                        Danificado
-                    </option>
-                    <option id='movido'>
-                        Movido
-                    </option>
-                </select>
-            </div> 
-            <div>
-                <label>Código</label>
-                <input />
-            </div>
-        </div>
+    }
 
-        <div className='containerTwo'>
-                
-                <label>Modelo</label>
-                <input />
-                
-                <label>Responsável</label>
-                <input />
-
-                <label>Localização</label>
-                <select>
-                    <option>
-                        Salas
-                    </option>
-                    <option>
-                        Laboratórios
-                    </option>
-                    <option>
-                        Oficinas
-                    </option>
-                    <option >
-                        Bibliotecas
-                    </option>
-                    <option >
-                        Refeitório
-                    </option>
-                </select>
-          
-        </div>
-        
-        <div className='containerThree'>
-            <div>
-                <label>N° de identificação</label>
-                <input />
-            </div>
-            <div>
-                <label>Data de aquisição</label>
-                <input />
-            </div>
-            <div>
-                <label>Valor</label>
-                <input />
-            </div>
-        </div>
-
-        <div className='addImage'>
-            <button>
-                +
+    useEffect(() => {
+        console.log(states.Token)
+    })
+    return (
+        <div className="container-new-modal">
+            <button onClick={openModal}>
+                <FaPlus size={25} />
+                {/* <span className="tooltiptext">Adicionar item</span> */}
             </button>
-            <p>Adicionar imagem</p>
-        </div>
+            <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                className="modalContentPatrimonio"
+                overlayClassName="modal-overlay"
+            >
+                <div className='title'>
+                    <h1 id='title-modal'>Cadastrar novo patrimônio</h1>
+                    <p id='info-modal'>Neste modal você poderá fazer as seguintes alterações:</p>
+                </div>
+                <div className='containerOne'>
+                    <div>
+                        {<ModalExcel />}
+                        {/* <input type="file"  accept='.xlsx'  onChange={(value)=>{SetExcel(value.target.files[0])}}/> */}
+                    </div>
+                    <div>
+                        <label>Situação</label>
+                        <select id='selectSituation' onChange={(value) => { SetData({ ...Data, situation: value.target.value }) }} defaultValue="ativo">
+                            <option id='ativo' value="ativo">
+                                Ativo
+                            </option>
+                            <option id='manutencao' value="manutencao">
+                                Manutenção
+                            </option>
+                            <option id='danificado' value="danificado">
+                                Danificado
+                            </option>
+                            <option id='movido' value="movido">
+                                Movido
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div className='containerTwo'>
 
-        <div className='containerButton'>
-            <button id='clear'>Limpar</button>
-            <button id='new'>Cadastrar patrimonio</button>
+                    <label>Modelo</label>
+                    <select onChange={(value) => { SetData({ ...Data, type: value.target.value }) }} defaultValue="cadeira">
+                        <option value="cadeira">
+                            Cadeira
+                        </option>
+                        <option value="projetor">
+                            Projetor
+                        </option>
+                        <option value="computador">
+                            Computador
+                        </option>
+                        <option value="mesa">
+                            Mesa
+                        </option>
+                        <option value="televisao">
+                            Televisão
+                        </option>
+                    </select>
+
+                    <label>Numero da sala </label>
+                    <input onChange={(value) => { SetData({ ...Data, room: value.target.value }) }} />
+                </div>
+                <div className='containerThree'>
+                    <div>
+                        <label>N° de identificação</label>
+                        <input onChange={(value) => { SetData({ ...Data, codePatrimony: value.target.value }) }} />
+                    </div>
+                    <div>
+                        <label>Valor</label>
+                        <input onChange={(value) => { SetData({ ...Data, valuePatrimony: value.target.value }) }} />
+                    </div>
+                </div>
+               
+                <div className='containerButton'>
+                    <button id='new' onClick={() => NewPatrimony()}>Cadastrar patrimonio</button>
+                </div>
+            </Modal>
+
         </div>
-      </Modal>
-    </div>
-  );
+    );
 }
 
 export default NewPatrimonioModal;

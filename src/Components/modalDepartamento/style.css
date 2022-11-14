@@ -8,11 +8,6 @@
   color: #9DA5A9;
 }
 
-.modal-content h1{
-  color: #574E4E;
-  margin-top: 0;
-}
-
 .btn-ver{
   background-color: #48578B;
   border: none;
@@ -26,6 +21,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.container-info{
+  display:flex;
+  align-items:center;
+  justify-content: space-around;
+  width:100%;
+  margin: 1rem 0;
+}
+
+.container-info.col{
+  flex-direction: column;
+  gap:2rem;
 }
 
 .card-total-itens, .card-valor-itens{
@@ -73,10 +81,6 @@
   position:relative;
 }
 
-.container-info{
-  display: flex;
-}
-
 .container-nome{
   flex-direction: column;
   display: flex;
@@ -85,11 +89,9 @@
 }
 
 .container-identificacao{
-  flex-direction: column;
-  display: flex;
   padding: 10px;
-  justify-content: right;
   margin-top: 10px;
+  width:100%;
 }
 
 .input-nome{
@@ -97,7 +99,7 @@
 }
 
 .input-identificacao{
-  width:100%;
+  width:100% !important;
 }
 
 .btn-voltar{
@@ -117,7 +119,6 @@
 }
 
 .btn-cadastrar{
-  width: 110px;
   height: 40px;
   padding: 10px;
   background-color: #0038FF;
@@ -133,7 +134,11 @@
 }
 
 .container-button{
-  margin: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width:50%;
+  margin-top: 1rem;
 }
 
 .input-nome, .input-identificacao{
@@ -141,29 +146,21 @@
   height: 30px;
   margin-top: 5px;
   border: solid 1px #D9D9D9;
-  width: 50%;
 }
-
-
 
 .container-menu{
   display: flex;
   flex-direction: column;
 }
 
-.container-menu label{
-  margin-left: 20px;
-}
-
 .menu-select{
   text-align: left;
-  color: #999999;
+  color: black;
   font-size: 16px;
   cursor: pointer;
   width: 100%;
   background-color: #fff;
   border: solid 1px #99999962;
-  padding: 10px;
   transition: all 0.1s ease-in-out;
   margin:10px 0;
 }
@@ -201,7 +198,7 @@
   justify-content: center;
 }
 
-.modal-content{
+.modal-content-departamento{
   width: 80%;
   height: 50%;
   max-width: 500px;
@@ -230,6 +227,32 @@ button{
   text-decoration: underline;
 }
 
+.container-info div{
+  width:60%;
+}
+
+.container-info label{
+  width:100%;
+  text-align:left;
+  font-size: .9rem !important;
+  color:rgba(0,0,0,0.6)
+}
+
+.container-info .input-room{ 
+  width: 100%;
+  height:1.7rem;
+  margin: 0 !important;
+}
+
+#select-department{
+  width:100%;
+  height: 1.7rem;
+}
+
+.txtRed{
+  color:red !important;
+}
+
 @media(max-width:720px) {
   h1{
     font-size: large;
@@ -238,12 +261,6 @@ button{
   .modal-content{
     width: 50%;
     height: 40%;
-  }
-
-  .container-info{
-    justify-content: center;
-    align-items: center;
-    display: flex;
   }
 
   label{
@@ -261,12 +278,6 @@ button{
     height: 75% ;
   }
 
-  .container-info{
-    display:flex;
-    flex-direction: column;
-    align-items:center;
-  }
-
   .container-nome, .container-identificacao{
     width: 90%;
   }
@@ -281,12 +292,6 @@ button{
     width: 60%;
     height: 75%;
   }
-  .container-info{
-    display:flex;
-    flex-direction: column;
-    align-items:center;
-  }
-
 
   .container-nome, .container-identificacao, .menu-select{
     width: 90%;
@@ -308,12 +313,6 @@ button{
     width: 80%;
     height: 40%;
   }
-
-  .container-info{
-    display:flex;
-    flex-direction: column;
-    align-items:center;
-  }
   
   .input-nome, .input-identificacao{
     /* padding: 10px; */
@@ -326,10 +325,7 @@ button{
   }
 
   .container-button{
-    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
   }
 
   .btn-cadastrar, .btn-voltar{

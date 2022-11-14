@@ -4,16 +4,16 @@ import { MdLock, MdEmail } from 'react-icons/md';
 import Imagem1 from '../../assets/imagemlogin.png';
 import Logo from '../../assets/logosenai.png';
 import Logo2 from '../../assets/logosenai2.png';
-import './App.css';
+import '../../styles/App.css';
 import axios from 'axios';
 
 export default function Register(){
   const [userDatas, setUserDatas] = useState({email:'', password:'', name:'', confirmationPass:'', office:'docente'});
-  
+  const [status, setStatus] = useState({type:"", msg:""});
   function handlerSubmit(e){
     e.preventDefault();
-    axios.post(`${process.env.REACT_APP_API_KEY}/register`,{...userDatas, name:'Christian'})
-    .then((response)=>console.log(response))
+    axios.post(`http://localhost:3500/user/register`,{...userDatas})
+    .then(({data:{status, msg}})=>setStatus({type:status, msg}))
     .catch((error)=>console.log(error));
   }
 
@@ -25,25 +25,51 @@ export default function Register(){
     </div>
     <div className="appForm">
       <img className="logosenai2" src={Logo2}/>
-      <h1 className="pageSwitcher">
+      <div className="pageSwitcher">
         GERENCIAMENTO DE PATRIMÔNIO 
-      </h1>
+      </div>
       <div className="formTitle">
-        <Link to="/"
-          className="formTitleLink">
+        <Link
+          to="/"
+          className="formTitleLink"
+        >
           Entrar
         </Link>
         {" "}ou{" "}
-        <Link exact
+        <Link
+          exact
           to="/register"
-          className="formTitleLink-active formTitleLink">
+          className="formTitleLink-active formTitleLink"
+        >
           Cadastrar
         </Link>
       </div>
       <div className="formCenter">
         <form onSubmit={(e)=>handlerSubmit(e)} className="formFields">
           <div className="formField">
-            <MdEmail size={30} color="gray"/>
+            <input
+              type="text"
+              id="name"
+              className="formFieldInput"
+              placeholder="Nome Completo"
+              value={userDatas.name}
+              onChange={(event)=>setUserDatas({...userDatas, name:event.target.value})}
+            />
+          </div>
+          <div className="formField">
+            <input
+              type="text"
+              id="cpf"
+              className="formFieldInput"
+              placeholder="Insira seu cpf"
+              name="cpf"
+              maxLength={12}
+              value={userDatas.cpf}
+              onChange={(event)=>setUserDatas({...userDatas, cpf:event.target.value})}
+            />
+          </div>
+          <div className="formField">
+            <MdEmail className="senha" size={20} color="gray"/>
             <input
               type="text"
               id="name"
@@ -55,7 +81,7 @@ export default function Register(){
             />
           </div>
           <div className="formField">
-            <MdLock size={30} color="gray"/>
+            <MdLock className="senha" size={20} color="gray"/>
             <input
             type="password"
             id="password"
@@ -67,7 +93,7 @@ export default function Register(){
             />
           </div>
           <div className="formField">
-            <MdLock size={30} color="gray"/>
+            <MdLock className="senha" size={20} color="gray"/>
             <input
               type="password"
               id="password1"
@@ -102,6 +128,11 @@ export default function Register(){
               />Administrador
             </div>
           </div>
+          {status.msg &&
+          <div className="formField"> 
+            <p className={status.type === "error"?"error":"success"}>{status.msg}</p>
+          </div>
+          }
           <div className="formField">
             <button className="formFieldButton2" type="submit" onClick={handlerSubmit}>Cadastrar</button>
           </div>

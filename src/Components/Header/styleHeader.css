@@ -9,34 +9,25 @@ header{
     justify-content: space-between;
 }
 
-header .header-content{
+.header-content-left{
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-header .header-content button{
-    border:none;
-    background:none;
-    cursor:pointer;
-    display: flex;
-    align-items: center;
-    width:40px;
-}
-
-header #senai-logo{
+#senai-logo{
     height: 20px;
     width: 100px;
     margin-left: 12px;
 }
 
-header #menu-button{
+#menu-button{
     margin: 25px;
     color: white;
     cursor: pointer;
 }
 
-header #button-exit{
+#button-exit{
     background: none;
     border: 30px;
     cursor: pointer;

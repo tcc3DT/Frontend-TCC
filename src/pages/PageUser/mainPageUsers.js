@@ -5,7 +5,7 @@ import Header from '../../Components/Header';
 import TableUser from './TableUser';
 
 
-export default function mainPageUsers() {
+export default function MainPageUsers() {
     return (
         <>
         <Header />
