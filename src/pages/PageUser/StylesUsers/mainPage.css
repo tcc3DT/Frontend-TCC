@@ -1,0 +1,11 @@
+.mainPage{
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.mainPage h1{
+    margin-left: 15%;
+    margin-top: 1%;
+    color: #717171;
+}
