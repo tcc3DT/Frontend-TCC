@@ -4,10 +4,18 @@ import {FaPlus} from 'react-icons/fa'
 import './newpatrimonio.css'
 import axios  from 'axios';
 
-function NewPatrimonioModal() {
+function NewPatrimonioModal(props) {
+
+  if (props.tema == 'dark') {
+    var cor = "modalContentPatrimonio-dark"
+   
+  } else {
+    var cor = "modalContentPatrimonio-light"
+  }
 
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const[Data,SetData] = React.useState([])
+  const token = sessionStorage.getItem("token")
   function openModal() {
     setIsOpen(true);
   }
@@ -15,8 +23,8 @@ function NewPatrimonioModal() {
     setIsOpen(false);
   }
 async function NewPatrimony(){
-  console.log(Data)
-  await axios.post(`http://localhost:3500/insertPatrimony`,Data)
+  
+  await axios.post(`http://localhost:3500/insertPatrimony`,Data,{headers:{"x-access-token":token}})
   .then((response)=>{alert("Patrimônio Criado!")})
   .catch((err)=>{
       alert("Falha ao criar o patrimônio")
@@ -26,13 +34,13 @@ async function NewPatrimony(){
 return (
   <div className="container-new-modal">
     <button onClick={openModal}>
-        <FaPlus size={25} />
+        <FaPlus size={25} id={props.theme}/>
     </button>
     <Modal
       isOpen={modalIsOpen}
       onRequestClose={closeModal}
       // className={cor}
-      className="modalContentPatrimonio"
+      className="modalContentPatrimonio-light"
       overlayClassName="modal-overlay">
 
       <div className='title'>
@@ -62,7 +70,7 @@ return (
 
       <div className='containerTwo'>
         <label>Modelo</label>
-          <select onChange={(value)=>{SetData({...Data,type:value.target.value})}}>
+          <select onChange={(value)=>{SetData({...Data,type:value.target.value})}} defaultChecked="cadeira">
               <option value="cadeira">
                   Cadeira
               </option>
@@ -90,21 +98,21 @@ return (
           </select>
           
         <label>N° da sala </label>
-        <input onChange={(value)=>{SetData({...Data,room:value.target.value})}} />
+        <input   value={Data.room} onChange={(value)=>{SetData({...Data,room:value.target.value})}} />
       </div>
 
       <div className='containerThree'>
       <div>
             <label>N° de identificação</label>
-            <input onChange={(value)=>{SetData({...Data,codePatrimony:value.target.value})}}/>
+            <input  value={Data.codePatrimony} onChange={(value)=>{SetData({...Data,codePatrimony:value.target.value})}}/>
         </div>
         <div>
             <label>Valor</label>
-            <input onChange={(value)=>{SetData({...Data,valuePatrimony:value.target.value})}}/>
+            <input  value={Data.valuePatrimony} onChange={(value)=>{SetData({...Data,valuePatrimony:value.target.value})}}/>
         </div>
       </div>
       <div className='containerButton'>
-          <button id='new' onClick={()=>NewPatrimony()}>Cadastrar patrimônio</button>
+          <button id='new' onClick={()=>NewPatrimony()}>Cadastrar patrimonio</button>
       </div>
     </Modal>
   </div>

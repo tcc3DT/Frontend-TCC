@@ -1,15 +1,72 @@
-.modalContentPatrimonio h1{
+.modalContentPatrimonio-dark h1{
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 5px;
+    width: 95%;
+    margin: 5px;
+}
+
+.modalContentPatrimonio-dark{
+    display: flex;
+    flex-direction: column;
+    width: 370px;
+    height: 600px;
+    margin: 120px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    align-items: center;
+    background-color: #3C3C3C;
+}
+
+.modalContentPatrimonio-dark label{
+    display: block;
+    margin: 5px;
+    font-size: 13px;
+    font-weight:bold ;
+
+    color: rgb(255, 255, 255);
+
+}
+
+.modalContentPatrimonio-dark input select{
+    width: 200px;
+    height: 25px;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    margin: 5px;
+    background-color: #4A4A4A;
+}
+
+.modalContentPatrimonio-dark button{ 
+    background-color: #4736ab;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    width: 210px;
+    height: 40px;
+    border-radius: 3px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    margin-top: 30px;
+    
+}
+
+/*------------------------------------------------------*/
+
+.modalContentPatrimonio-light h1{
     font-size: 20px;
     margin-bottom: 5px;
     width: 95%;
     margin: 5px;
 }
 
-.modalContentPatrimonio{
+.modalContentPatrimonio-light{
     display: flex;
     flex-direction: column;
-    width: 340px;
-    height: 500px;
+    width: 370px;
+    height: 600px;
     margin: 120px;
     padding: 15px;
     border-radius: 10px;
@@ -18,14 +75,15 @@
     background-color: #ffffff;
 }
 
-.modalContentPatrimonio label{
+.modalContentPatrimonio-light label{
     display: block;
     margin: 5px;
     font-size: 13px;
+    font-weight:bold ;
     color: rgb(0, 0, 0);
 }
 
-.modalContentPatrimonio input select{
+.modalContentPatrimonio-light input select{
     width: 200px;
     height: 25px;
     border: none;
@@ -34,19 +92,25 @@
     color: #fff;
     background-color: #fff;
     border: solid 1px #D9D9D9;
+
 }
 
-.modalContentPatrimonio button{ 
+.modalContentPatrimonio-light button{ 
     background-color: #0f3bd9;
     border: none;
     color: #fff;
+    font-weight: bold;
     width: 210px;
     height: 40px;
     border-radius: 3px;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
     margin-top: 30px;
+    
 }
+
+/*------------------------------------------------------*/
+
 
 .container-new-modal{
     display: flex;
@@ -69,6 +133,7 @@
 
 #selectSituation{
     width: 350px;
+
 }
 
 .containerTwo{
@@ -82,8 +147,6 @@
 
 .containerTwo input{
     width: 350px;
-    height: 25px;
-    border: 1px solid rgba(157, 157, 157, 0.42);
 }
 
 .containerThree{
@@ -96,8 +159,6 @@
 
 .containerThree input{
     width: 170px;
-    border: 1px solid rgba(157, 157, 157, 0.42);
-    height: 25px;
 }
 
 .containerThree label{
@@ -122,6 +183,7 @@
     font-size: 25px;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+
 }
 
 .addImage button:hover{
@@ -140,6 +202,10 @@
 
 .containerButton #new:hover{
     background-color: #0d2786;
+}
+
+.containerButton #delete:hover{
+    background-color: #b42222
 }
 
 #dark{

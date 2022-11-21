@@ -55,3 +55,16 @@
 .containerButtonsModalUser button:hover{
     cursor: pointer;
 }
+.container-checkbox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+.checkbox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+  padding: 10px;
+}

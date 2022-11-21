@@ -179,6 +179,7 @@ font-size: larger;
   }
 
   .formFieldButton{
+    width: 8%;
     height: 5%;
   }
 
@@ -210,6 +211,7 @@ font-size: larger;
 .app-black .content{
   background:#ffff ;
   color:#000;
+  width:30%;
   display:flex;
   flex-direction: column;
   padding:2rem;
@@ -250,12 +252,13 @@ font-size: larger;
 }
 
 .app-black .content #send-btn{
+  width:30%;
   height: 2.2rem;
   margin-left:auto;
   padding:.3rem;
   background: inherit;
   border: 2px solid #A93232;
-  border-radius: 1.2rem;
+  border-radius: 1.3rem;
   color: #913D3D;
   font-weight: bold;
   font-size: larger;

@@ -81,8 +81,8 @@
 }
 
 .containerUpModal img{
-    width: 120px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
 }
 
 .containerUpModal select{
@@ -238,8 +238,8 @@
         height: 150px;
     }
     .containerUpModal img{
-        width: 70px;
-        height: 110px;
+        width: 150px;
+        height: 150px;
     }
     .containerUpModal select{
         width: 70px;
@@ -322,8 +322,8 @@
         height: 80px;
     }
     .containerUpModal img{
-        width: 35px;
-        height: 60px;
+        width: 80px;
+        height: 80px;
     }
     .containerUpModal textarea{
         margin: 10px;

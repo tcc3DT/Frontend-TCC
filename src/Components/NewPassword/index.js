@@ -26,7 +26,7 @@ function NewPasswordModal({state,SetState}) {
      .then((response)=>{alert(response.data)
         navigate("/departments")
     })
-     .catch((err)=>{alert(err)})
+     .catch((err)=>{alert("senha incorreta!")})
   }
 
   return (

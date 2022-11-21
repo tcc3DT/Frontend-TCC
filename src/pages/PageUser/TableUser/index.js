@@ -4,12 +4,25 @@ import '../StylesUsers/tableUser.css'
 import {FaChevronLeft, FaChevronRight} from 'react-icons/fa'
 import {FaInfoCircle} from 'react-icons/fa'
 import ModalUser from "../../../Components/ModalUsers";
+import axios from "axios";
+import Title from "../../../Components/TitlePage";
 
 export default function TableUser(){
-    const [data, setData] = React.useState(Users);
+    const [datas,Setdatas] = React.useState([])
+
+    function GetData(){
+        axios.get("http://localhost:3500/users")
+        .then((response)=>{Setdatas(response.data)})
+    }
+
+    React.useEffect(()=>{
+        GetData();
+    },[])
 
     return(
         <>
+            <Title title="Tabela de Usuários"/>
+
             <div className="containerUsersUp">
             <div className="tableUsersContainer">
 
@@ -19,32 +32,32 @@ export default function TableUser(){
                     <tr>
                     <td>Email</td>
                     <td>Nome de Usuário</td>
-                    <td>Local</td>
+                    <td>Cargo</td>
                     <td></td>
                     </tr>
                 </thead>
 
-                {data.map((values) => {
-                    const { email, name, local } = values;
+                {datas.map((values) => {
+                    console.log(values)
                     return (
                     <tbody>
                         <tr>
                         <td >
                             <div>
                             <div>
-                                <p id="id-object">{email}</p>
+                                <p id="id-object">{values?.email}</p>
                             </div>
                             </div>
                         </td>
                         <td>
-                            <span >{name}</span>
+                            <span >{values?.name}</span>
                         </td>
                         <td>
-                            <span>{local}</span>
+                           {values?.office}
                         </td>
                         <td >
                             <div>
-                                <button >
+                                <button onClick={()=>{sessionStorage.setItem("Email",values?.email)}}>
                                     
                                     <ModalUser />
                                 </button>
@@ -59,21 +72,7 @@ export default function TableUser(){
 
             <div className="tableUsersFooter">
                 <div className="paginationUsers">
-                <nav>
-                    <ul>
-                    <li className="arrowsUsers">
-                        <FaChevronLeft size={20} />
-                    </li>
-                    <li className="numberSelectedUsers">1</li>
-                    <li className="numberUsers">2</li>
-                    <li className="numberUsers">3</li>
-                    <li className="numberUsers">4</li>
-                    <li className="numberUsers">5</li>
-                    <li className="arrowsUsers">
-                        <FaChevronRight size={20} />
-                    </li>
-                    </ul>
-                </nav>
+               
                 </div>
             </div>
             </div>

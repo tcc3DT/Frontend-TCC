@@ -5,7 +5,8 @@ import {FaInfoCircle} from 'react-icons/fa'
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import axios from 'axios';
-
+// import item from '../../assets/chair.png'
+// import view from '../../assets/view.png'
 
 function ModalInfo(props) {
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -24,13 +25,16 @@ function ModalInfo(props) {
 
     await axios.delete(`http://localhost:3500/deletePatrimony/${Patrimony}`)
         .then((response) => { alert("Patrimônio deletado") })
-        .catch((err) => { alert(err) })
+        .catch((err) => { alert("Não possui permissão para deletar patrimônios") })
 }
 function UpdatePatrimony() {
     axios.put(`http://localhost:3500/updatePatrimony/${Patrimony}`, Data)
         .then((response) => { alert("Patrimônio alterado") })
-        .catch((err) => { alert(err) })
+        .catch((err) => { alert("Não possui permissão para editar patrimônios") })
 }
+React.useEffect(()=>{
+    axios.get("http://localhost:3500/")
+})
   return (
     <div className="containerModal">
  
@@ -80,7 +84,7 @@ function UpdatePatrimony() {
                         <div className='containerInfo'>
                             <div>
                                 <label>Situação</label>
-                                <select onChange={(value) => { SetData({ ...Data, type: value.target.value }) }} defaultValue="cadeira">
+                                <select onChange={(value) => { SetData({ ...Data, situation: value.target.value }) }} defaultValue="cadeira">
                                             <option id='ativo' value="ativo">
                                                 Ativo
                                             </option>

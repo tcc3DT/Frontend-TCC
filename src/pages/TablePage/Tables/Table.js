@@ -1,23 +1,31 @@
 import React, { useState, useEffect} from "react";
+import useLocalStorage from "use-local-storage";
 import "../Styles/table.css";
 import ModalInfo from "../../../Components/ModalInfo";
 import NewPatrimonioModal from '../../../Components/newpatrimoniomodal';
 import {FaChevronLeft, FaChevronRight} from 'react-icons/fa'
 import axios from 'axios'
 import Categories from "./Categories";
+import SwitchComp from "../../../Components/Switch";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import Title from "../../../Components/TitlePage";
 
 function Tables() {
+
   const [data, SetDatas] = useState(Categories);
   const [Filter, SetFilter] = useState([]);
   const states = useSelector((states)=>states);    
+  const [theme, setTheme] = useState("light")
   var patrimonys = [];
   const dispatch = useDispatch();
   const Room = sessionStorage.getItem("room")
   const Department = sessionStorage.getItem("department")
   
- 
+  const toggleTheme = () =>{
+      setTheme((curr) => (curr === "light" ? "dark" : "light"))
+      
+  }
   async function filterResult(value) {
    
     if (Filter.length>0) {
@@ -25,38 +33,47 @@ function Tables() {
       await axios.post(`http://localhost:3500/${Room}/filterPatrimony/${Department}/${Filter}`)
         .then((response) => {
           SetDatas(response.data.FilterPatrimony[0].rooms[0]?.patrimonies)
+          
+          
         })
         .catch((err) => { console.log(err) })
     }
     else{
-      console.log(Department)
       SetDatas([])
        axios.get(`http://localhost:3500/${Department}/patrimony/${Room}`)
       .then((response) => {
         SetDatas(response.data?.rooms[0].patrimonies)
         console.log(response.data)
+  
       })
+
+      
     }
+
   }
   useEffect(()=>{
+    setTheme(states.NavData.value.theme);
   filterResult();
-  },[states.NavData])
+  },[Filter])
 
   return (
     <>
-      <div className="containerUp">
-      {/* <div className="containerUp">
+      <Title title="Tabela de Patrimônios"/>
+      <div className="containerUp" >
         <div className="row">
           <table>
-            <thead>
+            {/* <thead>
               <tr>
                 <td>
                   <text className="textclass">Filter</text>
                 </td>
               </tr>
-            </thead>
+            </thead> */}
             <tbody>
+              
               <div className="col">
+                <text className="textclass">Filtro</text>
+
                 <button className="checkbtn" onClick={() => SetFilter("all")}>
                   All
                 </button>
@@ -91,10 +108,9 @@ function Tables() {
             </tbody>
           </table>
         </div>
-        </div>  */}
         <div className="tableContainer">
           <button className="btn-add-patrimonio">
-            <NewPatrimonioModal/>
+            <NewPatrimonioModal theme={theme}/>
           </button>
 
           <div className="subContainer">
@@ -106,6 +122,7 @@ function Tables() {
                   <td>Nome/modelo</td>
                   <td>Situação</td>
                   <td>Valor</td>
+                 
                 </tr>
               </thead>
 
@@ -116,7 +133,7 @@ function Tables() {
                     <td >
                         <div>  
                           <button onClick={()=>{dispatch({type:'ADD_VALUE',data:{nPatrimony:index?.nPatrimony,image:index?.image}})}}>
-                            <ModalInfo/>
+                            <ModalInfo theme={theme} />
                             </button>
                         </div>
                       </td>
@@ -135,7 +152,8 @@ function Tables() {
                       </td>
                       <td >
                         <span >{index?.value}</span>
-                      </td> 
+                      </td>
+                     
                     </tr>
                   </tbody>
                 );
@@ -144,23 +162,7 @@ function Tables() {
           </div>
 
           <div className="tabbleFooter">
-            <div className="pagination">
-              <nav>
-                <ul>
-                  <li className="arrows">
-                    <FaChevronLeft size={20} />
-                  </li>
-                  <li className="numberSelected">1</li>
-                  <li className="number">2</li>
-                  <li className="number">3</li>
-                  <li className="number">4</li>
-                  <li className="number">5</li>
-                  <li className="arrows">
-                    <FaChevronRight size={20} />
-                  </li>
-                </ul>
-              </nav>
-            </div>
+            <div className="pagination"></div>
           </div>
         </div>
       </div>

@@ -29,7 +29,7 @@ function ModalDeparmento(props) {
       onRequestClose={closeModal}
       contentLabel="exemplo"
       overlayClassName="modal-overlay-dep"
-      className="c">
+      className="modal-content-dep">
         
         <h1 className="titulo">Criar Departamento</h1>
         <div className='container-info-novo'>

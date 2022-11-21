@@ -35,6 +35,24 @@
     background-color: #d5d6d7;
 }
 
+.tableUsersFooter {
+    color: #707275;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 0.75rem;
+    background-color: var(--table-head);
+    line-height: 1.5;
+}
+
+.pagination{
+    padding-top: 0.75rem;
+    color: var(--pagination-footer);
+    font-size: 0.75rem;
+    justify-content: space-between  ;
+    display: flex;
+    margin-top: 0.8rem;
+}
+
 td {
     padding-left: 1rem;
     padding-right: 1rem;

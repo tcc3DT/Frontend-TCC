@@ -12,8 +12,14 @@ export default function Register(){
   
   function handlerSubmit(e){
     e.preventDefault();
-    axios.post(`http://localhost:3500/user/register`,{...userDatas, name:'Joao'})
-    .then((response)=>alert(response.data))
+    if(userDatas.password==""|| userDatas.confirmationPass=="" || userDatas.name=="" || userDatas.office =="", userDatas.password =="" ){
+      return alert("prencha todos os campos")
+    }
+    else if(userDatas.password!=userDatas.confirmationPass){
+      return alert("as senhas não conferem")
+    }
+    axios.post(`http://localhost:3500/request/create`,{...userDatas, name:'Joao'})
+    .then((response)=>alert("Pré-cadastro concluido!"))
     .catch((error)=>console.log(error));
   }
 
@@ -62,7 +68,7 @@ export default function Register(){
           <div className="formField">
             <MdEmail className="senha" size={20} color="gray"/>
             <input
-              type="text"
+              type="email"
               id="name"
               className="formFieldInput"
               placeholder="Insira seu e-mail"

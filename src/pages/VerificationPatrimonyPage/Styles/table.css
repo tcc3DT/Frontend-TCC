@@ -64,7 +64,7 @@ body{
    margin: 10px;
 }
 
-.tableContainer {
+.tableContainer-verification {
     width: 65%;
     overflow: hidden;   
     border-radius: 0.5rem;
@@ -176,7 +176,7 @@ nav ul {
     color: var(--text-primary);
 }
 
-.tableContainer button {
+.tableContainer-verification button {
     align-items: center;
     display: flex;
     cursor: pointer;
@@ -184,56 +184,7 @@ nav ul {
     border: none;
 }
 
-.checkbtn{
-    background-color: transparent;
-    border: 1px solid var(--text-primary);
-    color: var(--text-primary);
-    border-radius: 8px;
-    padding: 5px 20px;
-    text-transform: uppercase;
-    display: block;
-    cursor: pointer;
-    text-align: center;
-    transition: .2s ease-in;
-    margin: 15px;
-    width: 12%;
-    font-size: 50%;
-}
 
-.checkbtn:hover{
-    color:#000;
-    border: solid 1px #666768;
-}
-
-.row:nth-child(2) .col:first-child{
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    margin-top: 6%;
-}
-
-.col{
-    display: flex;
-    flex: 1;
-    margin-right: 20px;
-    text-align: center;
-    margin-top: 10%;
-    margin-left: 15%;
-    flex-direction: row; 
-}
-
-.col h2{
-    font-size: 12px;
-    margin-top: 50%;
-    color: #5c5c5c;
-}
-
-.textclass{
-    margin-left: -10%;
-    font-weight: bold;
-    font-size: 20px;
-    border-bottom: 2px solid var(--text-primary);
-}
 
 .btn-finaliza{
     background-color: #48578B;
@@ -259,18 +210,6 @@ nav ul {
       display: block;
     }
 
-    .col{
-        display: flex;
-        flex: 1;
-        margin-right: 20px;
-        text-align: center;
-        margin-top: 10%;
-        margin-left: 15%;
-        flex-direction: row; 
-        border-bottom: solid 1px #b3b3b3;
-        width: 65%;
-    }
-
 
     .checkbtn{
         font-size: 20%;
@@ -292,7 +231,7 @@ nav ul {
         display: block;
     }
 
-    .tableContainer {
+    .tableContainer-verification {
         width: 98%;
         overflow: hidden;
         border-radius: 0.5rem;

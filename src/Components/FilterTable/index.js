@@ -2,10 +2,6 @@ export default function ({setFilter}){
     return(
         <div className="row">
             <div className="col">
-                <div ClassName="title-filter">
-                    <h2>Filtro</h2>
-                </div>
-
                 <button className="checkbtn">
                     All
                 </button>

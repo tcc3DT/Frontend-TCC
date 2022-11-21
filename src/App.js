@@ -22,7 +22,7 @@ function App() {
         <Route path="/table" element={<TablePage />}/>
         <Route path="/tableUsers" element={<TableUser />}/>
         <Route path="/verifications" element={<TableVerification />}/>
-        <Route path="/verificacaopatrimonio" element={<VerificationPatrimonyTable />}/>
+        <Route path="/verificationspatrimony" element={<VerificationPatrimonyTable />}/>
       </Routes>
     </Provider>
   );

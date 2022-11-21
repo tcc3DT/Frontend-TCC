@@ -21,13 +21,18 @@ export default function Login(){
 
 
   function handlerSubmit(e){
+    if(userData.email =="" || userData.password ==""){
+      return alert("prencha todos os campos!")
+    }
     e.preventDefault();
     axios.post(`http://localhost:3500/user/login`,userData)
-    .then(({data:{token}})=>{
-      dispatch({type:"ADD_TOKEN", data:token})
+    .then(({data})=>{
+      console.log(data.token)
+      sessionStorage.setItem("token",data.token)
+      dispatch({type:"ADD_TOKEN", data:data.token})
       navigate("/departments");
     })
-    .catch(({response:{data:{msg}}})=>setError(msg));
+    .catch((err)=>{alert("Login incorreto!")})
   }
   function ForgetPassModal(state, setState, setModal){
     async function sendEmail(value){

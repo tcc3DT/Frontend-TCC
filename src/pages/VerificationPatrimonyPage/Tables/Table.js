@@ -8,31 +8,74 @@ import Header from "../../../Components/Header";
 import axios from "axios";
 import Title from "../../../Components/TitlePage";
 
+
 function VerificationPatrimonyTable() {
   const [data, setData] = useState([]);
   const states = useSelector((states)=>states);    
   const [theme, setTheme] = useState(localStorage.getItem("theme"));
-  const [Checked,SetChecked] = useState(false);
-  var patrimonys = [{}];
+  const [patrimonys,SetPatrimonys] = useState([]);
+  const[CurrentValue,SetCurrentValue] = useState();
+  const [Exists,SetExists] = useState(false)
+  const Room = sessionStorage.getItem("room")
+  const department = sessionStorage.getItem("department")
+
+
+  function RegisterPatrimony(){
+    console.log(patrimonys)
+    axios.post(`http://localhost:3500/VerifyPatrimonys/${Room}`,patrimonys)
+    .then((response)=>{console.log(response.data)})
+    .catch((err)=>{console.log(err)})
+  }
+  function SetPatrimony(value){
+    SetCurrentValue(value);
+    console.log(CurrentValue)
+    patrimonys.push(value)
+    patrimonys.forEach((index)=>{
+      console.log(index)
+      if(CurrentValue !=index){
+  
+        // var indexArr = patrimonys.indexOf(CurrentValue)
+        // SetExists(true)
+        // SetCurrentValue("")
+        // patrimonys.splice(indexArr)
+      console.log(index)
+      }
+      else{
+        console.log("valor já existe")
+      }
+    })
+    // if(value ==CurrentValue){
+    //   var index = patrimonys.indexOf(value)
+    //   SetCurrentValue("")
+    //   patrimonys.splice(index)
+    // }
+    // else{
+
+    //   SetCurrentValue(value)
+    // }
+  }
   function GetData(){
-    axios.get(`http://localhost:3500/patrimonys/${10}`)
-    .then((response)=>{setData(response.data)})
+    axios.get(`http://localhost:3500/${department}/patrimonys/${Room}`)
+    .then((response)=>{
+      console.log(response.data)
+      setData(response.data[0]?.patrimonies)})
 
   }
   useEffect(()=>{
     setTheme(states.NavData.value.theme);
-    GetData();
+    GetData()
   },[states.NavData])
   
   return (
     <>
     <Header/>
+
     <Title title="Verificação de Patrimônio"/>
 
     {console.log(patrimonys)}
       <div className="containerUp-v" data-theme={theme}>
         {/* <FilterTable /> */}
-        <div className="tableContainer">
+        <div className="tableContainer-verification">
           <button className="btn-add-patrimonio">
         
           </button>
@@ -43,61 +86,50 @@ function VerificationPatrimonyTable() {
                   <td></td>
                   <td>N° de identificação</td>
                   <td>Nome/modelo</td>
-                  <td>Local</td>
+                  <td>valor</td>
                   <td>Situação</td>
                   <td>verificar</td>
                 </tr>
               </thead>
               <tbody>
                 {data.map((index)=>{
-
                   return(
           <tr>
                   <td>
               
                   </td>
                   <td>
-                    <p className="id-object">{index?.patrimonies[0]?.nPatrimony}</p>
+                    <p className="id-object">{index?.nPatrimony}</p>
                   </td>
                   <td>
-                    <span>{index?.patrimonies[0]?.type}</span>
+                    <span>{index?.type}</span>
                   </td>
                   <td>
-                    <span>Sala: {index?.nRoom}</span>
+                    <span>sala: 15</span>
                   </td>
                   <td >
-                    <span>{index?.patrimonies[0]?.status}</span>
+                    <span>{index?.status}</span>
                   </td> 
                   <td >
-                    <input type="checkbox" checked={Checked===true?patrimonys.push({number:index?.patrimonies[0]?.nPatrimony}):console.log(patrimonys.indexOf(index?.patrimonies[0]?.nPatrimony))} onChange={(e)=>{SetChecked(!false)}}/>
+                    <input type="checkbox"  onChange={(e)=>{SetPatrimony(index?.nPatrimony)}}/>
                   </td> 
                 </tr>
                   )
-                })}                
+                })}
+                
+  
+                  
+                
               </tbody>
+         
             </table>
+       
           </div>
+          <button onClick={()=>{RegisterPatrimony()}}>Finalizar</button>
           <div className="tabbleFooter">
-            <div className="pagination">
-              <nav>
-                <ul>
-                  <li className="arrows">
-                    <FaChevronLeft size={20} />
-                  </li>
-                  <li className="numberSelected">1</li>
-                  <li className="number">2</li>
-                  <li className="number">3</li>
-                  <li className="number">4</li>
-                  <li className="number">5</li>
-                  <li className="arrows">
-                    <FaChevronRight size={20} />
-                  </li>
-                </ul>
-              </nav>
-            </div>
+            <div className="pagination"></div>
           </div>
         </div>
-        <button className="btn-finaliza">Finalizar</button>
       </div>
     </>
   );
